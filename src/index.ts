@@ -24,4 +24,8 @@ io.on("connection", (socket) => {
     console.log(data);
     socket.emit("Welcome to the Server");
   });
+
+  socket.on("disconnect", (data) => {
+    console.log(`${socket.id} disconnected`);
+  });
 });
