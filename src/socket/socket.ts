@@ -2,6 +2,7 @@ import { Server } from "socket.io";
 
 import express from "express";
 import { createServer } from "http";
+import { sendWelcomeMessage } from "./messages.socket.js";
 
 const app = express();
 
@@ -17,6 +18,7 @@ const io = new Server(server, {
 io.on("connection", (socket) => {
   console.log(socket.id);
 
+  socket.emit("message", sendWelcomeMessage());
   socket.on("message", (data) => {
     console.log(data);
     socket.emit("message", "Response");
